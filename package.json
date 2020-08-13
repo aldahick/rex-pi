@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@athenajs/core": "^0.6.1",
+    "onoff": "^6.0.0",
     "reflect-metadata": "^0.1.13",
     "source-map-support": "^0.5.19",
     "tsyringe": "^4.3.0"

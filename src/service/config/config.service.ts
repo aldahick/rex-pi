@@ -5,7 +5,7 @@ import { singleton } from "tsyringe";
 export class ConfigService extends BaseConfigService {
   readonly garageDoor = {
     id: configUtils.required("GARAGE_DOOR_ID"),
-    pin: configUtils.required("GARAGE_DOOR_PIN")
+    pin: configUtils.required("GARAGE_DOOR_PIN", Number)
   };
 
   readonly redisUrl = configUtils.required("REDIS_URL");
