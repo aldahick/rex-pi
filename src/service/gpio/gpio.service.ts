@@ -1,18 +1,18 @@
-import { Gpio } from "onoff";
+import * as rpio from "rpio";
 import { singleton } from "tsyringe";
 
 @singleton()
 export class GpioService {
-  async write(pin: number, isOn: boolean): Promise<void> {
-    const gpio = new Gpio(pin, "out");
-    await gpio.write(isOn ? 1 : 0);
-    gpio.unexport();
+  write(pin: number, isOn: boolean): void {
+    rpio.open(pin, rpio.OUTPUT);
+    rpio.write(pin, isOn ? rpio.HIGH : rpio.LOW);
+    rpio.close(pin);
   }
 
-  async read(pin: number): Promise<boolean> {
-    const gpio = new Gpio(pin, "in");
-    const value = await gpio.read();
-    gpio.unexport();
+  read(pin: number): boolean {
+    rpio.open(pin, rpio.INPUT);
+    const value = rpio.read(pin);
+    rpio.close(pin);
     return value === 1;
   }
 }
